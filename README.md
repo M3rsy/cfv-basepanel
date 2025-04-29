@@ -109,7 +109,6 @@ http://cfv-basepanel.test/admin
 
 - CRUD de Configuraciones del Sistema
 - Dashboard personalizado
-- Bitácora de cambios
 - Multilenguaje
 
 ---
