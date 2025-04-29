@@ -6,12 +6,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory, Notifiable, HasRoles, LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -46,4 +48,30 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    /**
+     * Get the options for logging.
+     *
+     * @return LogOptions
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->useLogName('User')
+            ->setDescriptionForEvent(function (string $eventName) {
+                return $eventName === 'updated' && $this->isDirty('password')
+                    ? "User's password has been updated"
+                    : "User has been {$eventName}";
+            })
+            ->logOnly(['name', 'email'])
+            ->logOnlyDirty();
+    }
+    /**
+     * The attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    public function getAuthPassword(): string
+    {
+        return $this->password;
+    }  
 }
