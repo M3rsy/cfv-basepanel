@@ -107,7 +107,6 @@ http://cfv-basepanel.test/admin
 
 ## ✅ Próximos pasos sugeridos
 
-- Agregar Roles y Permisos
 - CRUD de Configuraciones del Sistema
 - Dashboard personalizado
 - Bitácora de cambios

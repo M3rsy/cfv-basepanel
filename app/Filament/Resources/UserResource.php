@@ -39,6 +39,11 @@ class UserResource extends Resource
                     ->required((fn ($get) => filled($get('password'))))
                     ->dehydrated(false)
                     ->same('password'),
+                Forms\Components\Select::make('roles')
+                    ->relationship('roles', 'name')
+                    ->multiple()
+                    ->preload()
+                    ->searchable(),
             ]);
     }
 
