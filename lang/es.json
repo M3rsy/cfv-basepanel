@@ -1,0 +1,12 @@
+{
+    "_comment": "Etiquetas de formulario de usuario",
+    "User": "Usuario",
+    "Users": "Usuarios",
+    "Password": "Contraseña",
+    "Confirm Password": "Confirmar Contraseña",
+    "Activity Log": "Registro de Actividad",
+    "Name": "Nombre",
+    "Email": "Correo Electrónico",
+    "Created At": "Creado",
+    "Updated At": "Actualizado"
+}

@@ -22,20 +22,37 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getPluralLabel(): string
+    {
+        return __('Users');
+    }
+    public static function getLabel(): string
+    {
+        return __('User');
+    }    
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 // Form fields go here
-                TextInput::make('name')->required(),
-                TextInput::make('email')->email()->required(),
+                TextInput::make('name')
+                    ->translateLabel()
+                    ->required(),
+                TextInput::make('email')
+                    ->translateLabel()
+                    ->email()->required(),
                 TextInput::make('password')
+                    ->translateLabel()
                     ->password()
+                    ->revealable()
                     ->required(fn (string $context) => $context === 'create')
                     ->dehydrated(fn ($state) => filled($state))
                     ->dehydrateStateUsing(fn ($state) => Hash::make($state)),
-                TextInput::make('password_confirmation')
+                TextInput::make('confirm_password')
+                    ->label(__('Confirm Password'))
                     ->password()
+                    ->revealable()
                     ->required((fn ($get) => filled($get('password'))))
                     ->dehydrated(false)
                     ->same('password'),
@@ -56,21 +73,21 @@ class UserResource extends Resource
                 ->sortable(),
 
                 TextColumn::make('name')
-                    ->label('Nombre')
+                    ->translateLabel()
                     ->searchable()
                     ->sortable(),
 
                 TextColumn::make('email')
-                    ->label('Correo Electrónico')
+                    ->translateLabel()
                     ->searchable(),
 
                 TextColumn::make('created_at')
-                    ->label('Creado')
+                    ->label(__('Created At'))
                     ->dateTime('d M Y H:i')
                     ->sortable(),
 
                 TextColumn::make('updated_at')
-                    ->label('Actualizado')
+                    ->label(__('Updated At'))
                     ->since(), // ejemplo: "hace 2 horas"
             ])
             ->filters([

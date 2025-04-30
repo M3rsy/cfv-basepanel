@@ -1,0 +1,12 @@
+{
+    "_comment": "User form labels",
+    "User": "User",
+    "Users": "Users",
+    "Password": "Password",
+    "Confirm Password": "Confirm Password",
+    "Activity Log": "Activity Log",
+    "Name": "Name",
+    "Email": "Email",
+    "Created At": "Created",
+    "Updated At": "Updated"
+}
