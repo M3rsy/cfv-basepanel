@@ -1,2 +1,6 @@
 *
 !.gitignore
+!assets/
+!assets/site_dark_logo.png
+!assets/site_logo.png
+!assets/site_favicon.ico

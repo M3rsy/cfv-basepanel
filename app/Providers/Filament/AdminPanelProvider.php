@@ -19,6 +19,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use CWSPS154\AppSettings\AppSettingsPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -28,6 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->authGuard('web')
             ->login()
             ->colors([
                 'primary' => Color::Amber,
@@ -55,6 +57,7 @@ class AdminPanelProvider extends PanelProvider
             ->plugins([
                 FilamentShieldPlugin::make(),
                 ActivitylogPlugin::make(),
+                AppSettingsPlugin::make()
             ])
             ->authMiddleware([
                 Authenticate::class,
