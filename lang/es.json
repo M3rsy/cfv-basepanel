@@ -8,5 +8,7 @@
     "Name": "Nombre",
     "Email": "Correo Electrónico",
     "Created At": "Creado",
-    "Updated At": "Actualizado"
+    "Updated At": "Actualizado",
+    "My Profile": "Mi Perfil",
+    "Users Managements": "Gestión de Usuarios"
 }

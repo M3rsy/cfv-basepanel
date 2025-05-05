@@ -20,6 +20,10 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use CWSPS154\AppSettings\AppSettingsPlugin;
+use Jeffgreco13\FilamentBreezy\BreezyCore;
+use Filament\Forms\Components\FileUpload;
+use Filament\Navigation\NavigationGroup;
+
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -30,7 +34,16 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->authGuard('web')
+            ->brandLogoHeight('2.5rem')
             ->login()
+            ->registration()
+            ->passwordReset()
+            ->emailVerification()
+            ->navigationGroups([
+                NavigationGroup::make()
+                    ->label(__('Users Managements'))
+                    ->collapsed(),
+            ])
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -56,8 +69,20 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 FilamentShieldPlugin::make(),
-                ActivitylogPlugin::make(),
-                AppSettingsPlugin::make()
+                ActivitylogPlugin::make()
+                ->navigationGroup(__('Users Managements')),
+                AppSettingsPlugin::make(),
+                BreezyCore::make()
+                ->myProfile(
+                    shouldRegisterUserMenu: true, // Sets the 'account' link in the panel User Menu (default = true)
+                    userMenuLabel: 'My Profile', // Customizes the 'account' link label in the panel User Menu (default = null)
+                    shouldRegisterNavigation: true, // Sets the 'My Profile' link in the panel navigation (default = true)
+                    navigationGroup: (__('Users Managements')), // Customizes the 'My Profile' link label in the panel navigation (default = null)
+                    hasAvatars: true, // Sets the 'My Profile' link in the panel navigation (default = true)
+                    slug: 'my-profile' // Sets the slug for the profile page (default = 'my-profile')
+                )
+                ->avatarUploadComponent(fn() => FileUpload::make('avatar_url')->disk('profile-photos'))
+                ->enableBrowserSessions()
             ])
             ->authMiddleware([
                 Authenticate::class,

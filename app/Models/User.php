@@ -9,8 +9,10 @@ use Spatie\Permission\Traits\HasRoles;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
+use Filament\Models\Contracts\HasAvatar;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasAvatar
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasRoles, LogsActivity;
@@ -23,6 +25,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'avatar_url',
         'password',
     ];
 
@@ -62,7 +65,7 @@ class User extends Authenticatable
                     ? "User's password has been updated"
                     : "User has been {$eventName}";
             })
-            ->logOnly(['name', 'email'])
+            ->logOnly(['name', 'email', 'avatar_url'])
             ->logOnlyDirty();
     }
     /**
@@ -74,4 +77,9 @@ class User extends Authenticatable
     {
         return $this->password;
     }  
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return $this->avatar_url ? Storage::disk('profile-photos')->url($this->avatar_url) : null ;
+    }
 }

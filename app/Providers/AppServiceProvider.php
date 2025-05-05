@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Policies\ActivityPolicy;
 use Spatie\Activitylog\Models\Activity;
 use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
+use Illuminate\Support\Facades\App;
 
 class AppServiceProvider extends ServiceProvider
 {
