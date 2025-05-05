@@ -67,27 +67,15 @@ Crea la base de datos con tu gestor favorito.
 
 ---
 
-## 🧱 Instalación de Filament Panel
+## 🧱 Configuración Final
 
-### 4. Instalar Filament v3
-
-```bash
-composer require filament/filament
-```
-
-### 5. Instalar el panel principal
-
-```bash
-php artisan filament:install --panels
-```
-
-### 6. Ejecutar migraciones
+### 4. Ejecutar migraciones
 
 ```bash
 php artisan migrate
 ```
 
-### 7. Crear un usuario administrador
+### 5. Crear un usuario administrador
 
 ```bash
 php artisan make:filament-user
@@ -97,7 +85,7 @@ Ingresa nombre, correo y contraseña.
 
 ---
 
-### 10. Acceder al panel
+### 6. Acceder al panel Administrativo
 
 ```url
 http://cfv-basepanel.test/admin
@@ -106,11 +94,7 @@ http://cfv-basepanel.test/admin
 ---
 
 ## ✅ Próximos pasos sugeridos
-
-- CRUD de Configuraciones del Sistema
 - Dashboard personalizado
-- Multilenguaje
-
 ---
 
 ## 🧠 Créditos
