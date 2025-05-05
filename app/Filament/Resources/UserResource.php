@@ -15,6 +15,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Hash;
+use Rmsramos\Activitylog\Actions\ActivityLogTimelineTableAction;
 
 class UserResource extends Resource
 {
@@ -35,7 +36,7 @@ class UserResource extends Resource
     {
         return __('Users Managements');
     }
-    
+
     public static function form(Form $form): Form
     {
         return $form
@@ -100,6 +101,17 @@ class UserResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                ActivityLogTimelineTableAction::make('Activities')
+                    ->label(__('Activities'))
+                    ->timelineIcons([
+                        'created' => 'heroicon-m-check-badge',
+                        'updated' => 'heroicon-m-pencil-square',
+                    ])
+                    ->timelineIconColors([
+                        'created' => 'info',
+                        'updated' => 'warning',
+                    ])
+                    ->limit(10),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

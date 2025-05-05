@@ -23,6 +23,7 @@ use CWSPS154\AppSettings\AppSettingsPlugin;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
 use Filament\Forms\Components\FileUpload;
 use Filament\Navigation\NavigationGroup;
+use App\Filament\Resources\ActivityLogCustomResource;
 
 
 class AdminPanelProvider extends PanelProvider
@@ -70,7 +71,8 @@ class AdminPanelProvider extends PanelProvider
             ->plugins([
                 FilamentShieldPlugin::make(),
                 ActivitylogPlugin::make()
-                ->navigationGroup(__('Users Managements')),
+                ->navigationGroup(__('Users Managements'))
+                ->resource(ActivityLogCustomResource::class),
                 AppSettingsPlugin::make(),
                 BreezyCore::make()
                 ->myProfile(
