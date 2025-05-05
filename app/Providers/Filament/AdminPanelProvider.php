@@ -24,6 +24,7 @@ use Jeffgreco13\FilamentBreezy\BreezyCore;
 use Filament\Forms\Components\FileUpload;
 use Filament\Navigation\NavigationGroup;
 use App\Filament\Resources\ActivityLogCustomResource;
+use App\Filament\Pages\AccountSettings;
 
 
 class AdminPanelProvider extends PanelProvider
@@ -76,15 +77,15 @@ class AdminPanelProvider extends PanelProvider
                 AppSettingsPlugin::make(),
                 BreezyCore::make()
                 ->myProfile(
-                    shouldRegisterUserMenu: true, // Sets the 'account' link in the panel User Menu (default = true)
-                    userMenuLabel: 'My Profile', // Customizes the 'account' link label in the panel User Menu (default = null)
-                    shouldRegisterNavigation: true, // Sets the 'My Profile' link in the panel navigation (default = true)
-                    navigationGroup: (__('Users Managements')), // Customizes the 'My Profile' link label in the panel navigation (default = null)
-                    hasAvatars: true, // Sets the 'My Profile' link in the panel navigation (default = true)
-                    slug: 'my-profile' // Sets the slug for the profile page (default = 'my-profile')
+                    shouldRegisterUserMenu: true,
+                    shouldRegisterNavigation: true, 
+                    navigationGroup: (__('Users Managements')), 
+                    hasAvatars: true,
+                    slug: 'my-profile'
                 )
                 ->avatarUploadComponent(fn() => FileUpload::make('avatar_url')->disk('profile-photos'))
                 ->enableBrowserSessions()
+                ->customMyProfilePage(AccountSettings::class)
             ])
             ->authMiddleware([
                 Authenticate::class,

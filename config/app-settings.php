@@ -7,5 +7,5 @@
  */
 
 return [
-    'settings-page' => \CWSPS154\AppSettings\Page\AppSettings::class,
+    'settings-page' => \App\Filament\Pages\AppSettings::class,
 ];
