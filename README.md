@@ -33,17 +33,16 @@ git clone https://github.com/tuusuario/cfv-basepanel.git
 cd cfv-basepanel
 ```
 
-### 2. Instalar dependencias y configurar entorno
+### 2. Configurar entorno
 
 ```bash
-composer install
 cp .env.example .env
-php artisan key:generate
 ```
 
 ### 3. Configurar base de datos en `.env`
 
 #### Ejemplo para MySQL
+
 ```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -54,6 +53,7 @@ DB_PASSWORD=
 ```
 
 #### Ejemplo para PostgreSQL
+
 ```env
 DB_CONNECTION=pgsql
 DB_HOST=127.0.0.1
@@ -67,38 +67,57 @@ Crea la base de datos con tu gestor favorito.
 
 ---
 
+### 4. Instalar dependencias
+
+```bash
+composer install
+php artisan key:generate
+```
+
 ## 🧱 Configuración Final
 
-### 4. Ejecutar migraciones y seeders
+### 5. Ejecutar migraciones y seeders
 
 ```bash
 php artisan migrate --seed
 ```
 
-### 5. Crear storage link (necesario para logos y archivos)
+### 6. Crear storage link (necesario para logos y archivos)
 
 ```bash
 php artisan storage:link
 ```
 
-### 6. Limpiar cache para evitar problemas
+### 7. Limpiar cache para evitar problemas
 
 ```bash
 php artisan optimize:clear
 php artisan filament:clear
 ```
+
 ---
 
-### 6. Acceder al panel Administrativo
+### 8. Modificar el APP_URL del `.env`
+
+```env
+APP_URL=http://cfv-basepanel.test
+```
+
+Utiliza la url de tu entorno donde levantara tu proyecto.
+
+### 9. Acceder al panel Administrativo
 
 ```url
 http://cfv-basepanel.test/admin
 ```
+Utiliza la url de tu entorno donde levantara tu proyecto.
 
 ---
 
 ## ✅ Próximos pasos sugeridos
+
 - Dashboard personalizado
+
 ---
 
 ## 🧠 Créditos
