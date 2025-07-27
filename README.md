@@ -69,20 +69,24 @@ Crea la base de datos con tu gestor favorito.
 
 ## 🧱 Configuración Final
 
-### 4. Ejecutar migraciones
+### 4. Ejecutar migraciones y seeders
 
 ```bash
-php artisan migrate
+php artisan migrate --seed
 ```
 
-### 5. Crear un usuario administrador
+### 5. Crear storage link (necesario para logos y archivos)
 
 ```bash
-php artisan make:filament-user
+php artisan storage:link
 ```
 
-Ingresa nombre, correo y contraseña.
+### 6. Limpiar cache para evitar problemas
 
+```bash
+php artisan optimize:clear
+php artisan filament:clear
+```
 ---
 
 ### 6. Acceder al panel Administrativo

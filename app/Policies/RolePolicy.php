@@ -13,6 +13,12 @@ class RolePolicy
     /**
      * Determine whether the user can view any models.
      */
+    public function before(User $user, $ability)
+    {
+        if ($user->hasRole('super_admin')) {
+            return true;
+        }
+    }
     public function viewAny(User $user): bool
     {
         return $user->can('view_any_role');

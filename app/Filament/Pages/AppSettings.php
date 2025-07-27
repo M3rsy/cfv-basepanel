@@ -30,6 +30,18 @@ class AppSettings extends BaseAppSettings
 
     public static function canAccess(): bool
     {
-        return auth()->check() && auth()->user()->can('page_AppSettings');
+        if (! auth()->check()) {
+            return false;
+        }
+
+        $user = auth()->user();
+
+        // Si es super_admin siempre tiene acceso
+        if ($user->hasRole('super_admin')) {
+            return true;
+        }
+
+        // Para el resto de roles se aplica el permiso normal
+        return $user->can('page_AppSettings');
     }
 }
