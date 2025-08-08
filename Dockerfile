@@ -24,9 +24,9 @@ RUN composer install --ignore-platform-reqs --no-interaction --prefer-dist --no-
 # Ahora copiamos todo el código
 COPY . .
 # Instala dependencias ignorando la comprobación de root
-RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --ignore-platform-reqs --no-interaction --prefer-dist \
-    && chmod -R 775 storage bootstrap/cache \
-    && chown -R www-data:www-data .
+#RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --ignore-platform-reqs --no-interaction --prefer-dist \
+ #   && chmod -R 775 storage bootstrap/cache \
+  #  && chown -R www-data:www-data .
 
 
 CMD ["php-fpm"]
