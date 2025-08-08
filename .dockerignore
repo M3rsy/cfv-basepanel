@@ -13,8 +13,8 @@
 **/*.jfm
 **/bin
 **/charts
-**/docker-compose*
-**/compose*
+##**/docker-compose*
+##**/compose*
 **/Dockerfile*
 **/node_modules
 **/npm-debug.log
