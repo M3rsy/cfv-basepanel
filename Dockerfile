@@ -16,7 +16,7 @@ WORKDIR /var/www
 #COPY ./src /var/www
 
 # Copiar solo composer.* primero para aprovechar la cache de Docker
-COPY composer.json composer.lock ./
+COPY composer.json ./
 
 # Instalar dependencias de PHP sin ejecutar scripts de Laravel
 RUN composer install --ignore-platform-reqs --no-interaction --prefer-dist --no-scripts --no-autoloader
