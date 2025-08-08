@@ -21,11 +21,12 @@ COPY composer.json composer.lock ./
 # Instalar dependencias de PHP sin ejecutar scripts de Laravel
 RUN composer install --ignore-platform-reqs --no-interaction --prefer-dist --no-scripts --no-autoloader
 
+# Ahora copiamos todo el código
+COPY . .
 # Instala dependencias ignorando la comprobación de root
 RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --ignore-platform-reqs --no-interaction --prefer-dist \
     && chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data .
-# Ahora copiamos todo el código
-COPY . .
+
 
 CMD ["php-fpm"]
