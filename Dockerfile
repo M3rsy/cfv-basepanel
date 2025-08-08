@@ -8,12 +8,14 @@ RUN apt-get update && apt-get install -y \
 # Instala Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Establece directorio de trabajo
 WORKDIR /var/www
 
-# Copia y prepara Laravel
+# Copia el código fuente del proyecto
 COPY ./src /var/www
 
-# Instala dependencias
+# Instala las dependencias de Laravel
 RUN composer install --ignore-platform-reqs --no-interaction --prefer-dist \
-    && chmod -R 755 /var/www/storage \
-    && chown -R www-data:www-data /var/www
+    && chmod -R 775 storage bootstrap/cache \
+    && chown -R www-data:www-data .
+    
